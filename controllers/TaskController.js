@@ -9,19 +9,35 @@ module.exports = {
         }
         res.json(tasks)
     },
+
     createTask: async (req, res) => {
         if (req.user.userRole == 'client') { res.status(401).send({ error: 'You are not an admin nor a worker' }) }
-        
-        console.log(req.body)
-        const { taskName, taskDescription, taskStatus, taskImage, clientId, workerId } = req.body
-        const task = await Task.create({
-            taskName,
-            taskDescription,
-            taskStatus,
-            taskImage,
-            clientId,
-            workerId
-        })
-        res.json(task)
+        if (req.user.userRole == 'worker') {
+            await Task.create({
+                taskName: req.body.taskName,
+                taskDescription: req.body.taskDescription,
+                taskStatus: req.body.taskStatus,
+                taskImage: req.body.taskImage,
+                clientId: req.body.clientId,
+                workerId: req.user.userId,
+                taskCreatedAt: new Date(),
+                taskUpdatedAt: new Date(),
+                taskCompletedAt: new Date()
+            })
+        }
+        if (req.userRole == 'admin') {
+            await Task.create({
+                taskName: req.body.taskName,
+                taskDescription: req.body.taskDescription,
+                taskStatus: req.body.taskStatus,
+                taskImage: req.body.taskImage,
+                clientId: req.body.clientId,
+                workerId: req.body.workerId,
+                taskCreatedAt: new Date(),
+                taskUpdatedAt: new Date(),
+                taskCompletedAt: new Date()
+            })
+        }
+        res.send({ message: 'Task created' })
     }
 }
