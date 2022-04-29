@@ -14,7 +14,10 @@ const Task = Tasks(sequelize);
 const TaskMessage = TaskMessages(sequelize);
 
 User.hasMany(TaskMessage, {foreignKey: 'userId'});
-User.belongsTo(Task, {foreignKey: 'taskId'});
+User.hasMany(Task, {foreignKey: 'clientId'});
+User.belongsToMany(Task, {through: 'TaskMessage', foreignKey: 'userId'});
+TaskMessage.belongsTo(User, {foreignKey: 'userId'});
+Task.belongsToMany(User, {through: 'TaskMessage', foreignKey: 'taskId'});
 Task.hasMany(TaskMessage, {foreignKey: 'taskId'});
 Task.hasMany(User, {foreignKey: 'taskId'});
 
