@@ -10,6 +10,14 @@ const TaskMessage = db.define("TaskMessage", {
     messageContent: {
         type: DataTypes.STRING,
         allowNull: false
+    },
+    userId: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
+    taskId: {
+        type: DataTypes.INTEGER,
+        allowNull: false
     }
 })
 
