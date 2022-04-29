@@ -17,9 +17,9 @@ const Task = require('../models/task');
             userRole: 'client'
         },
         {
-            userName: 'ClientMcClient',
+            userName: 'client2',
             userPassword: 'client',
-            userEmail: 'clientmcclient@client.com',
+            userEmail: 'client2@client.com',
             userRole: 'client'
         },
         {
@@ -37,6 +37,17 @@ const Task = require('../models/task');
             taskStatus: 'Incomplete',
             taskImage: 'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
             clientId: 2,
+            workerId: 4,
+            taskCreatedAt: new Date(),
+            taskUpdatedAt: new Date(),
+            taskCompletedAt: new Date()
+        },
+        {
+            taskName: 'Build me a house',
+            taskDescription: 'House please',
+            taskStatus: 'Incomplete',
+            taskImage: 'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
+            clientId: 3,
             workerId: 4,
             taskCreatedAt: new Date(),
             taskUpdatedAt: new Date(),

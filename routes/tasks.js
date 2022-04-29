@@ -14,4 +14,9 @@ router.post('/',
     asyncHandler(TaskController.createTask)
 );
 
+router.post('/',
+    Auth.user,
+    asyncHandler(TaskController.createTask)
+);
+
 module.exports = router
