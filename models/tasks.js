@@ -23,12 +23,19 @@ module.exports = database => {
         taskImage: {
             type: DataTypes.STRING,
             allowNull: false
+        },
+        clientId: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
+        workerId: {
+            type: DataTypes.INTEGER,
+            allowNull: false
         }
-    }
-        , {
-            sequelize: database,
-            modelName: 'Task'
-        });
+    }, {
+        sequelize: database,
+        modelName: 'Task'
+    });
     return Tasks;
 }
 

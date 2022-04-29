@@ -22,7 +22,7 @@ module.exports = database => {
             allowNull: false
         },
         userRole: {
-            type: DataTypes.STRING,
+            type: DataTypes.ENUM('admin', 'client', 'worker'),
             allowNull: false
         }
     }, {
