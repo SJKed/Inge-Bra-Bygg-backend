@@ -10,8 +10,8 @@ app.use( express.json() );
 app.use( express.urlencoded({ extended: true }) );
 
 // app.use('/users', routes.users);
-app.use('/', routes.auth);
-app.use('/tasks', routes.tasks);
+app.use('/api', routes.auth);
+app.use('/api/tasks', routes.tasks);
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`)
