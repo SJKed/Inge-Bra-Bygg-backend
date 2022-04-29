@@ -31,5 +31,22 @@ module.exports = database => {
         createdAt: false,
         updatedAt: false
     });
-    return Users;
-}    
+    
+    Users.authenticate = async (email, password) => {
+        const user = await Users.findOne({ where: { userEmail: email } });
+        if (!user) { throw new Error('User not found'); }
+        if (user.userPassword == password) {
+            const payload = {
+                userId: user.userId,
+                userName: user.userName,
+                userEmail: user.userEmail,
+                userRole: user.userRole
+            }
+            return jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' });
+        } else {
+            throw new Error('Password is incorrect');
+        }
+    }
+    
+}
+

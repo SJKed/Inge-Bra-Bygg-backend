@@ -47,6 +47,8 @@ Task.bulkCreate([
         taskDescription: 'I need to fix my car please help im helpless please i need help please',
         taskStatus: 'Incomplete',
         taskImage: 'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=62',
+        clientId: 3,
+        workerId: 2,
         taskCreatedAt: new Date(),
         taskUpdatedAt: new Date(),
         taskCompletedAt: new Date(),
