@@ -1,28 +1,14 @@
-const {Sequelize} = require('sequelize');
-const Users = require('./users');
-const Tasks = require('./tasks');
-const TaskMessages = require('./taskMessage');
-const taskMessage = require('./taskMessage');
+const User = require('../models/user');
+const Task = require('../models/task')
+const TaskMessage = require('../models/taskMessage')
 
-const sequelize = new Sequelize({
-    dialect: 'sqlite',
-    storage: 'database/ingeBraDB.sqlite'
-})
 
-const User = Users(sequelize);
-const Task = Tasks(sequelize);
-const TaskMessage = TaskMessages(sequelize);
+module.exports = function setupModels() {
+    User.hasMany(Task)
 
-User.hasMany(TaskMessage, {foreignKey: 'userId'});
-User.hasMany(Task, {foreignKey: 'clientId'});
-User.belongsToMany(Task, {through: 'TaskMessage', foreignKey: 'userId'});
-TaskMessage.belongsTo(User, {foreignKey: 'userId'});
-Task.belongsToMany(User, {through: 'TaskMessage', foreignKey: 'taskId'});
-Task.hasMany(TaskMessage, {foreignKey: 'taskId'});
-Task.hasMany(User, {foreignKey: 'taskId'});
+    Task.belongsTo(User)
+    Task.hasMany(TaskMessage)
 
-module.exports = {
-    User,
-    Task,
-    TaskMessage
-};
+    TaskMessage.belongsTo(User)
+    TaskMessage.belongsTo(Task)
+}

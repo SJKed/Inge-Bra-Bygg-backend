@@ -1,21 +1,16 @@
-const {DataTypes, Model} = require('sequelize');
+const { DataTypes } = require('sequelize');
+const db = require('../database/connection');
 
-module.exports = database => {
-    class TaskMessages extends Model { }
+const TaskMessage = db.define("TaskMessage", {
+    messageId: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
+    messageContent: {
+        type: DataTypes.STRING,
+        allowNull: false
+    }
+})
 
-    TaskMessages.init({
-        messageId: {
-            type: DataTypes.INTEGER,
-            primaryKey: true,
-            autoIncrement: true
-        },
-        messageContent: {
-            type: DataTypes.STRING,
-            allowNull: false
-        }
-    }, {
-        sequelize: database,
-        modelName: 'TaskMessage'
-    });
-    return TaskMessages;
-}
+module.exports = TaskMessage

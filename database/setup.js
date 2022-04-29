@@ -1,6 +1,4 @@
-const {User, Task, TaskMessage} = require('../models');
+const db = require('./connection')
+require('../models')()
 
-User.sync({force: true})
-Task.sync({force: true})
-TaskMessage.sync({force: true})
-
+db.sync()
