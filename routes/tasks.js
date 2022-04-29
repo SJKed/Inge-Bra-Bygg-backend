@@ -9,5 +9,9 @@ router.get('/',
     Auth.user,
     asyncHandler(TaskController.getTasks)
 );
+router.post('/',
+    Auth.user,
+    asyncHandler(TaskController.createTask)
+);
 
 module.exports = router
