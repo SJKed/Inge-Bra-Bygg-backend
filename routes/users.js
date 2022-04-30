@@ -10,5 +10,9 @@ router.get('/',
     Auth.user,
     asyncHandler(UserController.getUsers)
 );
+router.get('/:id',
+    Auth.user,
+    asyncHandler(UserController.getUser)
+);
 
 module.exports = router

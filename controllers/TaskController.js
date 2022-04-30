@@ -59,7 +59,6 @@ module.exports = {
         res.json('Message created successfully: ' + message.messageContent)
     },
     updateMessage: async (req, res) => {
-        console.log(req.params)
         const { messageId } = req.params.messageId
         const message = await taskMessage.findByPk(messageId)
 
