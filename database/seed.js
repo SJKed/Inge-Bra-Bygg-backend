@@ -11,21 +11,21 @@ const Task = require('../models/task');
             userRole: 'admin'
         },
         {
-            userName: 'client',
-            userPassword: 'client',
-            userEmail: 'client@client.com',
+            userName: 'Anna R. Johnston',
+            userPassword: 'password',
+            userEmail: 'AnnaRJohnston@rhyta.com',
             userRole: 'client'
         },
         {
-            userName: 'client2',
-            userPassword: 'client',
-            userEmail: 'client2@client.com',
+            userName: 'Larry A. Wester',
+            userPassword: 'password',
+            userEmail: 'LarryAWester@teleworm.us',
             userRole: 'client'
         },
         {
-            userName: 'worker',
-            userPassword: 'worker',
-            userEmail: 'worker@worker.com',
+            userName: 'Richard L. Myler',
+            userPassword: 'password',
+            userEmail: 'RichardLMyler@gmail.com',
             userRole: 'worker'
         }
     ])
@@ -57,14 +57,24 @@ const Task = require('../models/task');
 
     await TaskMessage.bulkCreate([
         {
-            messageContent: 'I need help please',
+            messageContent: 'Hi! Would it be possible to fix my porch up? I am a bit strapped for cash, but i do own a few of these BAYC Monkey NFTs. DIAMOND HANDS💎🙌 HOMIE! Interested?',
             userId: 2,
             taskId: 1,
         },
         {
-            messageContent: 'I am here to help!',
+            messageContent: 'Sorry Maam, but we only take payment in actual money.',
             userId: 4,
             taskId: 1,
-        }
+        },
+        {
+            messageContent: 'Hi there! I am looking to have a 2 story villa built on my plot of land just some miles out of town. I am unfortunatly unable to pay for your services via cash or bank transfer. But i can however part ways with one of my premium BAYC Monkey NFTs! They are worth a fortune! ',
+            userId: 3,
+            taskId: 2,
+        },
+        {
+            messageContent: 'How many did you all fall for the same scam?',
+            userId: 4,
+            taskId: 2,
+        },
     ])
 })();
