@@ -63,7 +63,7 @@ const Task = require('../models/task');
         },
         {
             messageContent: 'I am here to help!',
-            userId: 3,
+            userId: 4,
             taskId: 1,
         }
     ])
