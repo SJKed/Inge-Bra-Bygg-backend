@@ -39,11 +39,23 @@ module.exports = {
     getMessages: async (req, res) => {
         const { id } = req.params
         const task = await Task.findByPk(id)
-        
+
         if(req.user.userRole == 'client' && task.clientId != req.user.userId) { throw new Error('You are not authorized to view this task') }
         if(req.user.userRole == 'worker' && task.workerId != req.user.userId) { throw new Error('You are not authorized to view this task') }
 
         const messages = await taskMessage.findAll({ where: { taskId: id } })
         res.json(messages)
+    },
+    createMessage: async (req, res) => {
+        const { id } = req.params
+        const task = await Task.findByPk(id)
+        const messageContent = req.body.messageContent
+        const userId = req.user.userId
+
+        if(req.user.userRole == 'client' && task.clientId != req.user.userId) { throw new Error('You are not authorized to create a message in this channel') }
+        if(req.user.userRole == 'worker' && task.workerId != req.user.userId) { throw new Error('You are not authorized to create a message in this channel') }
+
+        const message = await taskMessage.create({ messageContent, userId, taskId: id })
+        res.json('Message created successfully: ' + message.messageContent)
     }
 }

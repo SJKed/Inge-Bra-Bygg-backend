@@ -28,11 +28,11 @@ router.get('/:id/messages',
     Auth.user,
     asyncHandler(TaskController.getMessages)
 );
-router.post('/:id/message',
+router.post('/:id/messages',
     Auth.user,
     asyncHandler(TaskController.createMessage)
 );
-router.patch('/:id/message',
+router.patch('/:id/messages',
     Auth.user,
     asyncHandler(TaskController.updateMessage)
 );
