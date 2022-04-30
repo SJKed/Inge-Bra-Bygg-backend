@@ -12,6 +12,7 @@ app.use( express.urlencoded({ extended: true }) );
 // app.use('/users', routes.users);
 app.use('/api', routes.auth);
 app.use('/api/tasks', routes.tasks);
+app.use('/api/users', routes.users);
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`)
