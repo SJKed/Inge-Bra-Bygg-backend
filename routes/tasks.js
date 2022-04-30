@@ -32,7 +32,7 @@ router.post('/:id/messages',
     Auth.user,
     asyncHandler(TaskController.createMessage)
 );
-router.patch('/:id/messages',
+router.patch('/:id/messages/:messageId',
     Auth.user,
     asyncHandler(TaskController.updateMessage)
 );

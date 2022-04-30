@@ -57,5 +57,16 @@ module.exports = {
 
         const message = await taskMessage.create({ messageContent, userId, taskId: id })
         res.json('Message created successfully: ' + message.messageContent)
+    },
+    updateMessage: async (req, res) => {
+        console.log(req.params)
+        const { messageId } = req.params.messageId
+        const message = await taskMessage.findByPk(messageId)
+
+        if(req.user.userRole == 'client' && message.userId != req.user.userId) { throw new Error('You are not authorized to update this message') }
+        if(req.user.userRole == 'worker' && message.userId != req.user.userId) { throw new Error('You are not authorized to update this message') }
+
+        await message.update(req.body)
+        res.json('Message updated successfully: ' + message.messageContent)
     }
 }
