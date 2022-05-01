@@ -14,5 +14,18 @@ router.get('/:id',
     Auth.user,
     asyncHandler(UserController.getUser)
 );
+router.get('/me', 
+    Auth.user,
+    asyncHandler(UserController.getMe)
+);
+router.post('/',
+    Auth.user,
+    Validations.createUser,
+    asyncHandler(UserController.createUser)
+);
+router.patch('/:id',
+    Auth.user,
+    asyncHandler(UserController.updateUser)
+);
 
 module.exports = router

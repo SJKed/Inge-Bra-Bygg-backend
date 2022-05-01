@@ -31,4 +31,22 @@ module.exports = {
             }
         }
     },
+    getMe: async (req, res) => {
+        const user = await User.findByPk(req.user.userId)
+        res.json(user)
+    },
+    createUser: async (req, res) => {
+        if (req.user.userRole !== 'admin') { throw new Error('You are not authorized to create a user') }
+
+        const user = await User.create(req.body)
+        res.json(user)
+    },
+    updateUser: async (req, res) => {
+        if (req.user.userRole !== 'admin') { throw new Error('You are not authorized to update a user') }
+
+        const user = await User.findByPk(req.params.id)
+        if (user.userRole == 'admin') { throw new Error('You cannot update an admin') }
+        user.update(req.body)
+        res.json(user)
+    }
 }
