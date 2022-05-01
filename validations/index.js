@@ -39,4 +39,17 @@ module.exports = {
             .isIn(['pending', 'in progress', 'completed'])
             .withMessage('Missing task status'),
     ]),
+
+
+    //user creation validations
+    createUser: validator([
+        check('userName').exists()
+            .withMessage('Missing user name'),
+        check('userEmail').exists()
+            .withMessage('Missing user email'),
+        check('userPassword').exists()
+            .withMessage('Missing user password'),
+        check('userRole').exists()
+            .withMessage('Missing user role'),
+    ]),
 }

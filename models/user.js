@@ -36,7 +36,7 @@ User.authenticate = async (email, password) => {
             userEmail: user.userEmail,
             userRole: user.userRole
         }
-        return jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' });
+        return jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1w' });
     } else {
         throw new Error('Password is incorrect');
     }
