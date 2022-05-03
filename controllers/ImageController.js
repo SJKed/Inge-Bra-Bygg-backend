@@ -9,15 +9,15 @@ module.exports = {
   },
   
   upload: (req, res) => {
-    if(!req.files.imgFile.mimetype.startsWith('image/')){ 
+    if(!req.files.image.mimetype.startsWith('image/')){ 
       throw new InvalidFile('Invaild file, must be an image') 
     }
     
-    if(fs.existsSync(path.join('public','images', req.files.imgFile.name))){
-      throw new FileExists(req.files.imgFile.name)
+    if(fs.existsSync(path.join('public','images', req.files.image.name))){
+      throw new FileExists(req.files.image.name)
     }
     
-    fs.copyFileSync(req.files.imgFile.tempFilePath, path.join('public','images', req.files.imgFile.name))
+    fs.copyFileSync(req.files.image.tempFilePath, path.join('public','images', req.files.image.name))
     
     res.json({message: 'Image uploaded'})
   }
