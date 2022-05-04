@@ -10,13 +10,13 @@ router.get('/',
     Auth.user,
     asyncHandler(UserController.getUsers)
 );
-router.get('/:id',
-    Auth.user,
-    asyncHandler(UserController.getUser)
-);
 router.get('/me', 
     Auth.user,
     asyncHandler(UserController.getMe)
+);
+router.get('/:id',
+    Auth.user,
+    asyncHandler(UserController.getUser)
 );
 router.post('/',
     Auth.user,

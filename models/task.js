@@ -9,7 +9,8 @@ const Task = db.define("Task", {
     },
     taskName: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        unique: true
     },
     taskDescription: {
         type: DataTypes.STRING,
