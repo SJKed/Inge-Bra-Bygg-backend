@@ -1,6 +1,7 @@
 const { DataTypes } = require('sequelize');
 const db = require('../database/connection');
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
 
 const User = db.define('User', {
     userId: {
@@ -26,10 +27,19 @@ const User = db.define('User', {
     }
 })
 
+User.beforeCreate(async (user) => {
+    user.userPassword = await bcrypt.hashSync(user.userPassword, 10);
+})
+
+User.beforeUpdate(async (user) => {
+    user.userPassword = await bcrypt.hashSync(user.userPassword, 10);
+})
+
 User.authenticate = async (email, password) => {
     const user = await User.findOne({ where: { userEmail: email } });
     if (!user) { throw new Error('User not found'); }
-    if (user.userPassword == password) {
+    const PasswordIsValid = await bcrypt.compare(password, user.userPassword);
+    if (PasswordIsValid) {
         const payload = {
             userId: user.userId,
             userName: user.userName,

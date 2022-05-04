@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "setup": "node database/setup.js",
-    "seed": "node database/seed.js"
+    "seed": "node database/seed.js",
+    "serve": "nodemon app.js"
   },
   "repository": {
     "type": "git",
@@ -29,5 +30,8 @@
     "sequelize": "^6.19.0",
     "socket.io": "^4.5.0",
     "sqlite3": "^5.0.6"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.16"
   }
 }

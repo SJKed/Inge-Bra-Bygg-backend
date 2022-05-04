@@ -3,32 +3,32 @@ const TaskMessage = require('../models/taskMessage');
 const Task = require('../models/task');
 
 (async () => {
-    await User.bulkCreate([
-        {
-            userName: 'admin',
-            userPassword: 'admin',
-            userEmail: 'admin@admin.com',
-            userRole: 'admin'
-        },
-        {
-            userName: 'Anna R. Johnston',
-            userPassword: 'password',
-            userEmail: 'AnnaRJohnston@rhyta.com',
-            userRole: 'client'
-        },
-        {
-            userName: 'Larry A. Wester',
-            userPassword: 'password',
-            userEmail: 'LarryAWester@teleworm.us',
-            userRole: 'client'
-        },
-        {
-            userName: 'Richard L. Myler',
-            userPassword: 'password',
-            userEmail: 'RichardLMyler@gmail.com',
-            userRole: 'worker'
-        }
-    ])
+    await User.create({
+        userName: 'admin',
+        userPassword: 'admin',
+        userEmail: 'admin@admin.com',
+        userRole: 'admin'
+    })
+    await User.create({
+        userName: 'Anna R. Johnston',
+        userPassword: 'password',
+        userEmail: 'AnnaRJohnston@rhyta.com',
+        userRole: 'client'
+    })
+    await User.create({
+        userName: 'Larry A. Wester',
+        userPassword: 'password',
+        userEmail: 'LarryAWester@teleworm.us',
+        userRole: 'client'
+    })
+    await User.create({
+        userName: 'Richard L. Myler',
+        userPassword: 'password',
+        userEmail: 'RichardLMyler@gmail.com',
+        userRole: 'worker'
+    })
+
+
 
     await Task.bulkCreate([
         {

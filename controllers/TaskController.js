@@ -40,8 +40,8 @@ module.exports = {
         const { id } = req.params
         const task = await Task.findByPk(id)
 
-        if(req.user.userRole == 'client' && task.clientId != req.user.userId) { throw new Error('You are not authorized to view this task') }
-        if(req.user.userRole == 'worker' && task.workerId != req.user.userId) { throw new Error('You are not authorized to view this task') }
+        if (req.user.userRole == 'client' && task.clientId != req.user.userId) { throw new Error('You are not authorized to view this task') }
+        if (req.user.userRole == 'worker' && task.workerId != req.user.userId) { throw new Error('You are not authorized to view this task') }
 
         const messages = await taskMessage.findAll({ where: { taskId: id } })
         res.json(messages)
@@ -52,8 +52,8 @@ module.exports = {
         const messageContent = req.body.messageContent
         const userId = req.user.userId
 
-        if(req.user.userRole == 'client' && task.clientId != req.user.userId) { throw new Error('You are not authorized to create a message in this channel') }
-        if(req.user.userRole == 'worker' && task.workerId != req.user.userId) { throw new Error('You are not authorized to create a message in this channel') }
+        if (req.user.userRole == 'client' && task.clientId != req.user.userId) { throw new Error('You are not authorized to create a message in this channel') }
+        if (req.user.userRole == 'worker' && task.workerId != req.user.userId) { throw new Error('You are not authorized to create a message in this channel') }
 
         const message = await taskMessage.create({ messageContent, userId, taskId: id })
         res.json('Message created successfully: ' + message.messageContent)
@@ -62,8 +62,8 @@ module.exports = {
         const { messageId } = req.params.messageId
         const message = await taskMessage.findByPk(messageId)
 
-        if(req.user.userRole == 'client' && message.userId != req.user.userId) { throw new Error('You are not authorized to update this message') }
-        if(req.user.userRole == 'worker' && message.userId != req.user.userId) { throw new Error('You are not authorized to update this message') }
+        if (req.user.userRole == 'client' && message.userId != req.user.userId) { throw new Error('You are not authorized to update this message') }
+        if (req.user.userRole == 'worker' && message.userId != req.user.userId) { throw new Error('You are not authorized to update this message') }
 
         await message.update(req.body)
         res.json('Message updated successfully: ' + message.messageContent)
