@@ -1,4 +1,4 @@
 const db = require('./connection')
 require('../models')()
 
-db.sync()
+db.sync({force: true})
