@@ -10,7 +10,7 @@ router.get('/',
 );
 
 router.post('/',
-  Auth.admin, 
+  Auth.user, 
   fileUpload({useTempFiles:true}),
   ImageController.upload
 );

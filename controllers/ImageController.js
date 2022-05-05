@@ -1,6 +1,6 @@
 const fs = require('fs')
 const path = require('path')
-const {InvalidFile, FileExists} = require('../errors')
+const {UnsupportedFileType, FileExists, Unauthorized, Forbidden} = require('../errors')
 
 module.exports = {
   getAll: (req, res) => {
@@ -9,8 +9,9 @@ module.exports = {
   },
   
   upload: (req, res) => {
+    if(req.user.userRole == 'client') { throw new Unauthorized }
     if(!req.files.image.mimetype.startsWith('image/')){ 
-      throw new InvalidFile('Invaild file, must be an image') 
+      throw new UnsupportedFileType('Only images are supported') 
     }
     
     if(fs.existsSync(path.join('public','images', req.files.image.name))){
