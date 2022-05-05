@@ -1,4 +1,4 @@
-![poster](/public/images/simon.jpeg)
+![poster](/public/images/poster.jpeg)
 # Inge Bra Bygg AB
 **Ärende och kommunikationsplattform mellan byggare och kunder för byggfirman Inge Bra Bygg AB.**
 
